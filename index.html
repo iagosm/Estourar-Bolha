@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto estourando a bolha</title>
+</head>
+<style>
+  .placar {
+    width: 100px;
+    width: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #DDD;
+    text-align: center;
+  }
+
+  #placar {
+    font-size: 50px;
+  }
+
+  .bola {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #000;
+    position: absolute;
+  }
+</style>
+<body>
+  <div class="placar">
+    Bolas estouradas: <br>
+    <span id="placar">0</span>
+    <button id="começar">Começar o jogo</button>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+   
+   function addBola() {
+    
+    var x = Math.floor(Math.random() * 800); 
+    var y = Math.floor(Math.random() * 500); 
+    var cor = Math.floor(Math.random() * 4); 
+    var bola = $('<div class="bola"></div>');
+
+    switch(cor) {
+      case 0: 
+        bola.css('background-color', 'blue');
+        break;
+      case 1: 
+        bola.css('background-color', 'red');
+        break;
+      case 2: 
+        bola.css('background-color', 'green');
+        break;
+      case 3: 
+        bola.css('background-color', 'orange');
+        break;
+      case 4: 
+        bola.css('background-color', 'yellow');
+        break;
+    }
+
+    bola.css('left', x+'px');
+    bola.css('top', y+'px');
+    bola.css('color', y+'px');
+    bola.bind('click', function() {
+      $(this).fadeOut('fast');
+
+      placar++;
+      updatePlacar();
+    });
+    $(document.body).append(bola)
+  }
+  
+  var placar = 0;
+
+  function updatePlacar() {
+    $('#placar').html(placar);
+  }
+  
+   $(function() {
+
+      $('#começar').bind('click', function(){
+        
+        setInterval(addBola, 1000);
+
+
+      })
+
+    });
+  </script>
+</body>
+</html>
